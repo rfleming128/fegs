@@ -14,9 +14,14 @@ class Server {
         this.app = express();
         this.clients = [];
 
-        expressWs(app);
+        expressWs(this.app);
 
         this.app.ws('/clients', (ws, req) => {
+            this.addSocketClient(ws);
+
+            ws.on('close', () => {
+                this.removeSocketClient(ws);
+            })
         })
 
         this.server = this.app.listen(port);
@@ -29,6 +34,27 @@ class Server {
     setGame(game){
         if(!this.game || !this.game.playing){
             this.game = game;
+        }
+    }
+
+    /**
+     * Add websocket client to this server
+     * 
+     * @param {WebSocket} client 
+     */
+    addSocketClient(client){
+        this.clients.push(client);
+    }
+
+    /**
+     * Remove websocket client from this server
+     * 
+     * @param {WebSocket} client 
+     */
+    removeSocketClient(client){
+        let index = this.clients.findIndex(socket => socket === ws);
+        if(index !== -1){
+            this.clients.splice(index, 1);
         }
     }
 }
