@@ -4,6 +4,8 @@
 <dt><a href="#MetaDataPropertyObject">MetaDataPropertyObject</a></dt>
 <dd><p>Extenible class for including metadata on how to handle the data on an object for transfer.</p>
 </dd>
+<dt><a href="#PlayerState">PlayerState</a> ⇐ <code><a href="#MetaDataPropertyObject">MetaDataPropertyObject</a></code></dt>
+<dd></dd>
 <dt><a href="#Server">Server</a></dt>
 <dd><p>Server class, manages the express server which uses the websockets to run the game.</p>
 </dd>
@@ -94,6 +96,86 @@ Prepares a parameter for transfer according to the metadata instructions.
 | transferType | <code>string</code> | Prepare it for which transfer type. |
 | property | <code>string</code> | Property name |
 
+<a name="PlayerState"></a>
+
+## PlayerState ⇐ [<code>MetaDataPropertyObject</code>](#MetaDataPropertyObject)
+**Kind**: global class  
+**Extends**: [<code>MetaDataPropertyObject</code>](#MetaDataPropertyObject)  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| name | <code>string</code> | Name of PlayerState |
+
+
+* [PlayerState](#PlayerState) ⇐ [<code>MetaDataPropertyObject</code>](#MetaDataPropertyObject)
+    * [new PlayerState(name, [properties])](#new_PlayerState_new)
+    * [.addProperty(propertyName, data)](#MetaDataPropertyObject+addProperty)
+    * [.removeProperty(propertyName)](#MetaDataPropertyObject+removeProperty)
+    * [.prepareObjectForTransfer(transferType)](#MetaDataPropertyObject+prepareObjectForTransfer)
+    * [.preparePropertyForTransfer(transferType, property)](#MetaDataPropertyObject+preparePropertyForTransfer)
+
+<a name="new_PlayerState_new"></a>
+
+### new PlayerState(name, [properties])
+Creates a PlayerState with a name and properties
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| name | <code>string</code> | Name of PlayerState |
+| [properties] | [<code>object.&lt;Data&gt;</code>](#Data) | Data properties to add to PlayerState |
+
+<a name="MetaDataPropertyObject+addProperty"></a>
+
+### playerState.addProperty(propertyName, data)
+Adds a property and the correct metadata.
+
+**Kind**: instance method of [<code>PlayerState</code>](#PlayerState)  
+**Overrides**: [<code>addProperty</code>](#MetaDataPropertyObject+addProperty)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| propertyName | <code>string</code> | Name of the property to be set |
+| data | [<code>Data</code>](#Data) | Object containing data and metadata for the property. |
+
+<a name="MetaDataPropertyObject+removeProperty"></a>
+
+### playerState.removeProperty(propertyName)
+Removes a property and the metadata.
+
+**Kind**: instance method of [<code>PlayerState</code>](#PlayerState)  
+**Overrides**: [<code>removeProperty</code>](#MetaDataPropertyObject+removeProperty)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| propertyName | <code>string</code> | Name of property to be removed. |
+
+<a name="MetaDataPropertyObject+prepareObjectForTransfer"></a>
+
+### playerState.prepareObjectForTransfer(transferType)
+Prepares the object for transfer according to the metadata instructions.
+
+**Kind**: instance method of [<code>PlayerState</code>](#PlayerState)  
+**Overrides**: [<code>prepareObjectForTransfer</code>](#MetaDataPropertyObject+prepareObjectForTransfer)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| transferType | <code>string</code> | Prepare it for which transfer type. |
+
+<a name="MetaDataPropertyObject+preparePropertyForTransfer"></a>
+
+### playerState.preparePropertyForTransfer(transferType, property)
+Prepares a parameter for transfer according to the metadata instructions.
+
+**Kind**: instance method of [<code>PlayerState</code>](#PlayerState)  
+**Overrides**: [<code>preparePropertyForTransfer</code>](#MetaDataPropertyObject+preparePropertyForTransfer)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| transferType | <code>string</code> | Prepare it for which transfer type. |
+| property | <code>string</code> | Property name |
+
 <a name="Server"></a>
 
 ## Server
@@ -159,7 +241,7 @@ Remove websocket client from this server
 | Name | Type | Description |
 | --- | --- | --- |
 | [include] | <code>boolean</code> | Whether to include this data |
-| [dataTransform] | <code>function</code> | How to transform the data before sending |
+| [transform] | <code>function</code> | How to transform the data before sending |
 
 <a name="Data"></a>
 

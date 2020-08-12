@@ -54,3 +54,16 @@ module.exports.broadcastMetadata = () => {
         }
     }
 }
+
+module.exports.transformFunction = () => {
+    return {
+        input: {
+            test: {data: 0, broadcast: {include: true, transform: data => {
+                return 1;
+            }}}
+        }, 
+        output: {
+            test: 1
+        }
+    }
+}

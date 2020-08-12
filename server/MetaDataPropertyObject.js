@@ -1,7 +1,7 @@
 /**
  * @typedef {object} TransferMetaData
  * @property {boolean} [include] Whether to include this data
- * @property {function} [dataTransform] How to transform the data before sending
+ * @property {function} [transform] How to transform the data before sending
  */
 
 /**
@@ -84,7 +84,7 @@ class MetaDataPropertyObject {
         let metdataForPropety = this.propertyMetaData[property];
         let metadataForTransfer = metdataForPropety[transferType];
         if(metadataForTransfer.include){
-            if(metadataForTransfer.dataTransform){
+            if(metadataForTransfer.transform){
                 return metadataForTransfer.transform(this[property]);
             } else {
                 return this[property];

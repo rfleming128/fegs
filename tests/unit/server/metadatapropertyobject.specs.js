@@ -1,6 +1,7 @@
 const chai = require('chai');
 const expect = chai.expect;
 const assert = chai.assert;
+const sinon = require('sinon');
 
 const MetaDataPropertyObject = require('../../../server/MetaDataPropertyObject');
 const metadataFixtures = require('../../fixtures/metadatapropertyobject/fixtures');
@@ -46,6 +47,11 @@ describe('MetaDataPropertyObject Class', () => {
             let output = metaDataPropertyObject.prepareObjectForTransfer("broadcast");
             expect(output).to.deep.equal(metadataFixtures.broadcastMetadata().broadcast);
         })
+
+        it('Should call function when preparing', () => {
+            metaDataPropertyObject = new MetaDataPropertyObject(metadataFixtures.transformFunction().input);
+            let output = metaDataPropertyObject.prepareObjectForTransfer("broadcast");
+            expect(output).to.deep.equal(metadataFixtures.transformFunction().output)
+        })
     })
-    
 })
