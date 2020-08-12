@@ -29,8 +29,8 @@ describe('MetaDataPropertyObject Class', () => {
     describe('AddProperty', () => {
         it('Should add property and metadata', () => {
             metaDataPropertyObject = new MetaDataPropertyObject();
-            metaDataPropertyObject.addProperty("test", metadataFixtures.broadcastMetadata().input.test);
-            expect(metaDataPropertyObject).to.deep.equal(metadataFixtures.broadcastMetadata().output);
+            metaDataPropertyObject.addProperty("test", metadataFixtures.addData().input.test);
+            expect(metaDataPropertyObject).to.deep.equal(metadataFixtures.addData().output);
         })
     });
     describe('RemoveProperty', () => {
@@ -40,4 +40,12 @@ describe('MetaDataPropertyObject Class', () => {
             expect(metaDataPropertyObject).to.deep.equal({propertyMetaData: {}})
         })
     })
+    describe('Prepare for transfer', () => {
+        it('Should be prepared for transfer', () => {
+            metaDataPropertyObject = new MetaDataPropertyObject(metadataFixtures.broadcastMetadata().input);
+            let output = metaDataPropertyObject.prepareObjectForTransfer("broadcast");
+            expect(output).to.deep.equal(metadataFixtures.broadcastMetadata().broadcast);
+        })
+    })
+    
 })

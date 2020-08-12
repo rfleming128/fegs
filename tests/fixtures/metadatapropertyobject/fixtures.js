@@ -9,7 +9,7 @@ module.exports.simpleMetadata = () => {
     }
 }
 
-module.exports.broadcastMetadata = () => {
+module.exports.addData = () => {
     return {
         input: {
             test: {data: 0, broadcast: {include: true}}
@@ -23,6 +23,34 @@ module.exports.broadcastMetadata = () => {
                     }
                 }
             }
+        }
+    }
+}
+
+module.exports.broadcastMetadata = () => {
+    return {
+        input: {
+            test: {data: 0, broadcast: {include: true}},
+            test2: {data: 4, broadcast: {include: false}}
+        },
+        output: {
+            test: 0,
+            test2: 4,
+            propertyMetaData: {
+                test: {
+                    broadcast: {
+                        include: true
+                    }
+                },
+                test2: {
+                    broadcast: {
+                        include: false
+                    }
+                }
+            }
+        },
+        broadcast: {
+            test: 0
         }
     }
 }

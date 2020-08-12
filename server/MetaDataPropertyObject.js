@@ -49,6 +49,48 @@ class MetaDataPropertyObject {
         delete this.propertyMetaData[propertyName];
         delete this[propertyName];
     }
+
+    /**
+     * Prepares the object for transfer according to the metadata instructions.
+     * 
+     * @param {string} transferType Prepare it for which transfer type.
+     */
+    prepareObjectForTransfer(transferType){
+        let data = {};
+
+        for(const property in this){
+            let metdataForPropety = this.propertyMetaData[property];
+            if(metdataForPropety){
+                let metadataForTransfer = metdataForPropety[transferType];
+                if(metadataForTransfer){
+                    let propertyPrepared = this.preparePropertyForTransfer(transferType, property);
+                    if(propertyPrepared !== undefined){
+                        data[property] = propertyPrepared;
+                    }
+                }
+            }
+        };
+
+        return data;
+    }
+
+    /**
+     * Prepares a parameter for transfer according to the metadata instructions.
+     * 
+     * @param {string} transferType Prepare it for which transfer type.
+     * @param {string} property Property name
+     */
+    preparePropertyForTransfer(transferType, property){
+        let metdataForPropety = this.propertyMetaData[property];
+        let metadataForTransfer = metdataForPropety[transferType];
+        if(metadataForTransfer.include){
+            if(metadataForTransfer.dataTransform){
+                return metadataForTransfer.transform(this[property]);
+            } else {
+                return this[property];
+            }
+        }
+    }
 }
 
 module.exports = MetaDataPropertyObject;

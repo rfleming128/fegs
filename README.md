@@ -35,6 +35,8 @@ Extenible class for including metadata on how to handle the data on an object fo
     * [new MetaDataPropertyObject(properties)](#new_MetaDataPropertyObject_new)
     * [.addProperty(propertyName, data)](#MetaDataPropertyObject+addProperty)
     * [.removeProperty(propertyName)](#MetaDataPropertyObject+removeProperty)
+    * [.prepareObjectForTransfer(transferType)](#MetaDataPropertyObject+prepareObjectForTransfer)
+    * [.preparePropertyForTransfer(transferType, property)](#MetaDataPropertyObject+preparePropertyForTransfer)
 
 <a name="new_MetaDataPropertyObject_new"></a>
 
@@ -68,6 +70,29 @@ Removes a property and the metadata.
 | Param | Type | Description |
 | --- | --- | --- |
 | propertyName | <code>string</code> | Name of property to be removed. |
+
+<a name="MetaDataPropertyObject+prepareObjectForTransfer"></a>
+
+### metaDataPropertyObject.prepareObjectForTransfer(transferType)
+Prepares the object for transfer according to the metadata instructions.
+
+**Kind**: instance method of [<code>MetaDataPropertyObject</code>](#MetaDataPropertyObject)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| transferType | <code>string</code> | Prepare it for which transfer type. |
+
+<a name="MetaDataPropertyObject+preparePropertyForTransfer"></a>
+
+### metaDataPropertyObject.preparePropertyForTransfer(transferType, property)
+Prepares a parameter for transfer according to the metadata instructions.
+
+**Kind**: instance method of [<code>MetaDataPropertyObject</code>](#MetaDataPropertyObject)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| transferType | <code>string</code> | Prepare it for which transfer type. |
+| property | <code>string</code> | Property name |
 
 <a name="Server"></a>
 
