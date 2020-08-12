@@ -3,9 +3,8 @@ const expect = chai.expect;
 const assert = chai.assert;
 
 const MetaDataPropertyObject = require('../../../server/MetaDataPropertyObject');
+const metadataFixtures = require('../../fixtures/metadatapropertyobject/fixtures');
 const { should } = require('chai');
-
-let metaDataPropertyObject;
 
 describe('MetaDataPropertyObject Class', () => {
     describe('Constructor', () => {
@@ -15,20 +14,30 @@ describe('MetaDataPropertyObject Class', () => {
             expect(metaDataPropertyObject).to.be.an('object');
         });
         it('Should set properties', () => {
-            metaDataPropertyObject = new MetaDataPropertyObject({test: {data: 0}});
+            metaDataPropertyObject = new MetaDataPropertyObject(metadataFixtures.simpleMetadata().input);
 
             expect(metaDataPropertyObject).to.be.an('object');
-            expect(metaDataPropertyObject.test).to.equal(0);
-            expect(metaDataPropertyObject.propertyMetaData.test).to.be.an('object');
+            expect(metaDataPropertyObject).to.deep.equal(metadataFixtures.simpleMetadata().output);
         })
         it('Should set MetaData', () => {
-            metaDataPropertyObject = new MetaDataPropertyObject({test: {data: 0, broadcast: {include: true}}});
+            metaDataPropertyObject = new MetaDataPropertyObject(metadataFixtures.broadcastMetadata().input);
 
             expect(metaDataPropertyObject).to.be.an('object');
-            expect(metaDataPropertyObject.test).to.equal(0);
-            expect(metaDataPropertyObject.propertyMetaData.test).to.be.an('object');
-            expect(metaDataPropertyObject.propertyMetaData.test.broadcast).to.be.an('object');
-            expect(metaDataPropertyObject.propertyMetaData.test.broadcast.include).to.be.true;
+            expect(metaDataPropertyObject).to.deep.equal(metadataFixtures.broadcastMetadata().output);
+        })
+    });
+    describe('AddProperty', () => {
+        it('Should add property and metadata', () => {
+            metaDataPropertyObject = new MetaDataPropertyObject();
+            metaDataPropertyObject.addProperty("test", metadataFixtures.broadcastMetadata().input.test);
+            expect(metaDataPropertyObject).to.deep.equal(metadataFixtures.broadcastMetadata().output);
+        })
+    });
+    describe('RemoveProperty', () => {
+        it('Should remove property and metadata', () => {
+            metaDataPropertyObject = new MetaDataPropertyObject(metadataFixtures.simpleMetadata().input);
+            metaDataPropertyObject.removeProperty("test");
+            expect(metaDataPropertyObject).to.deep.equal({propertyMetaData: {}})
         })
     })
 })

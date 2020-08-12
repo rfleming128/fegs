@@ -24,10 +24,17 @@
 Extenible class for including metadata on how to handle the data on an object for transfer.
 
 **Kind**: global class  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| propertyMetaData | [<code>object.&lt;TransferMetaData&gt;</code>](#TransferMetaData) | Metadata for other properties |
+
 
 * [MetaDataPropertyObject](#MetaDataPropertyObject)
     * [new MetaDataPropertyObject(properties)](#new_MetaDataPropertyObject_new)
     * [.addProperty(propertyName, data)](#MetaDataPropertyObject+addProperty)
+    * [.removeProperty(propertyName)](#MetaDataPropertyObject+removeProperty)
 
 <a name="new_MetaDataPropertyObject_new"></a>
 
@@ -50,6 +57,17 @@ Adds a property and the correct metadata.
 | --- | --- | --- |
 | propertyName | <code>string</code> | Name of the property to be set |
 | data | [<code>Data</code>](#Data) | Object containing data and metadata for the property. |
+
+<a name="MetaDataPropertyObject+removeProperty"></a>
+
+### metaDataPropertyObject.removeProperty(propertyName)
+Removes a property and the metadata.
+
+**Kind**: instance method of [<code>MetaDataPropertyObject</code>](#MetaDataPropertyObject)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| propertyName | <code>string</code> | Name of property to be removed. |
 
 <a name="Server"></a>
 

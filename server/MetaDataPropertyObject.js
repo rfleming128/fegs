@@ -12,6 +12,8 @@
 
 /**
  * Extenible class for including metadata on how to handle the data on an object for transfer.
+ * 
+ * @property {object.<TransferMetaData>} propertyMetaData Metadata for other properties
  */
 class MetaDataPropertyObject {
     /**
@@ -36,6 +38,16 @@ class MetaDataPropertyObject {
         this[propertyName] = data.data;
         this.propertyMetaData[propertyName] = data;
         delete this.propertyMetaData[propertyName].data;
+    }
+
+    /**
+     * Removes a property and the metadata.
+     * 
+     * @param {string} propertyName Name of property to be removed. 
+     */
+    removeProperty(propertyName){
+        delete this.propertyMetaData[propertyName];
+        delete this[propertyName];
     }
 }
 
