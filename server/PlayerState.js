@@ -15,7 +15,7 @@ class PlayerState extends MetaDataPropertyObject{
      */
     constructor(name, properties){
         super(properties);
-        this.name = name;
+        this.addProperty("name", {data: name, broadcast: {include: true}, send: {include: true}, export: {include: true}});
     }
 }
 

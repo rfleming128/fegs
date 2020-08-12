@@ -1,10 +1,14 @@
 /**
+ * Metadata about how to process the data for transfer.
+ * 
  * @typedef {object} TransferMetaData
  * @property {boolean} [include] Whether to include this data
  * @property {function} [transform] How to transform the data before sending
  */
 
 /**
+ * Data that includes metadata
+ * 
  * @typedef {object} Data
  * @property {any} data The data to be added as a property
  * @property {TransferMetaData} *<Data> How to handle the data during this type of data transfer

@@ -42,7 +42,7 @@ describe('MetaDataPropertyObject Class', () => {
         })
     })
     describe('Prepare for transfer', () => {
-        it('Should be prepared for transfer', () => {
+        it('Should be prepared for transfer correctly', () => {
             metaDataPropertyObject = new MetaDataPropertyObject(metadataFixtures.broadcastMetadata().input);
             let output = metaDataPropertyObject.prepareObjectForTransfer("broadcast");
             expect(output).to.deep.equal(metadataFixtures.broadcastMetadata().broadcast);
