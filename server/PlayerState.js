@@ -1,6 +1,8 @@
 const MetaDataPropertyObject = require('./MetaDataPropertyObject');
 
 /**
+ * Class to contain details about player state. Used to route player logic properly. 
+ * 
  * @property {string} name Name of PlayerState
  * @extends MetaDataPropertyObject
  */

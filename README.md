@@ -5,7 +5,8 @@
 <dd><p>Extenible class for including metadata on how to handle the data on an object for transfer.</p>
 </dd>
 <dt><a href="#PlayerState">PlayerState</a> ⇐ <code><a href="#MetaDataPropertyObject">MetaDataPropertyObject</a></code></dt>
-<dd></dd>
+<dd><p>Class to contain details about player state. Used to route player logic properly.</p>
+</dd>
 <dt><a href="#Server">Server</a></dt>
 <dd><p>Server class, manages the express server which uses the websockets to run the game.</p>
 </dd>
@@ -99,6 +100,8 @@ Prepares a parameter for transfer according to the metadata instructions.
 <a name="PlayerState"></a>
 
 ## PlayerState ⇐ [<code>MetaDataPropertyObject</code>](#MetaDataPropertyObject)
+Class to contain details about player state. Used to route player logic properly.
+
 **Kind**: global class  
 **Extends**: [<code>MetaDataPropertyObject</code>](#MetaDataPropertyObject)  
 **Properties**
