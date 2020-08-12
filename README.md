@@ -4,6 +4,8 @@
 <dt><a href="#MetaDataPropertyObject">MetaDataPropertyObject</a></dt>
 <dd><p>Extenible class for including metadata on how to handle the data on an object for transfer.</p>
 </dd>
+<dt><a href="#Player">Player</a> ⇐ <code><a href="#MetaDataPropertyObject">MetaDataPropertyObject</a></code></dt>
+<dd></dd>
 <dt><a href="#PlayerState">PlayerState</a> ⇐ <code><a href="#MetaDataPropertyObject">MetaDataPropertyObject</a></code></dt>
 <dd><p>Class to contain details about player state. Used to route player logic properly.</p>
 </dd>
@@ -16,9 +18,11 @@
 
 <dl>
 <dt><a href="#TransferMetaData">TransferMetaData</a> : <code>object</code></dt>
-<dd></dd>
+<dd><p>Metadata about how to process the data for transfer.</p>
+</dd>
 <dt><a href="#Data">Data</a> : <code>object</code></dt>
-<dd></dd>
+<dd><p>Data that includes metadata</p>
+</dd>
 </dl>
 
 <a name="MetaDataPropertyObject"></a>
@@ -91,6 +95,187 @@ Prepares the object for transfer according to the metadata instructions.
 Prepares a parameter for transfer according to the metadata instructions.
 
 **Kind**: instance method of [<code>MetaDataPropertyObject</code>](#MetaDataPropertyObject)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| transferType | <code>string</code> | Prepare it for which transfer type. |
+| property | <code>string</code> | Property name |
+
+<a name="Player"></a>
+
+## Player ⇐ [<code>MetaDataPropertyObject</code>](#MetaDataPropertyObject)
+**Kind**: global class  
+**Extends**: [<code>MetaDataPropertyObject</code>](#MetaDataPropertyObject)  
+
+* [Player](#Player) ⇐ [<code>MetaDataPropertyObject</code>](#MetaDataPropertyObject)
+    * [new Player(game, functions, defaultState, properties, name, socket)](#new_Player_new)
+    * [.setSocket(socket)](#Player+setSocket)
+    * [.onSocketData(data)](#Player+onSocketData)
+    * [.startTurn()](#Player+startTurn)
+    * [.endTurn()](#Player+endTurn)
+    * [.sendData(data)](#Player+sendData)
+    * [.setState(state, stack)](#Player+setState)
+    * [.popState()](#Player+popState)
+    * [.export()](#Player+export)
+    * [.prepareForSend()](#Player+prepareForSend)
+    * [.prepareForBroadcast()](#Player+prepareForBroadcast)
+    * [.addProperty(propertyName, data)](#MetaDataPropertyObject+addProperty)
+    * [.removeProperty(propertyName)](#MetaDataPropertyObject+removeProperty)
+    * [.prepareObjectForTransfer(transferType)](#MetaDataPropertyObject+prepareObjectForTransfer)
+    * [.preparePropertyForTransfer(transferType, property)](#MetaDataPropertyObject+preparePropertyForTransfer)
+
+<a name="new_Player_new"></a>
+
+### new Player(game, functions, defaultState, properties, name, socket)
+Creates a player object
+
+
+| Param | Type |
+| --- | --- |
+| game | <code>Game</code> | 
+| functions | <code>object</code> | 
+| defaultState | <code>function</code> | 
+| properties | [<code>object.&lt;Data&gt;</code>](#Data) | 
+| name | <code>string</code> | 
+| socket | <code>WebSocket</code> | 
+
+<a name="Player+setSocket"></a>
+
+### player.setSocket(socket)
+Sets the socket on the player
+
+**Kind**: instance method of [<code>Player</code>](#Player)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| socket | <code>WebSocket</code> | Socket to be set |
+
+<a name="Player+onSocketData"></a>
+
+### player.onSocketData(data)
+Called when the socket recieves data
+
+**Kind**: instance method of [<code>Player</code>](#Player)  
+**Todo**
+
+- [ ] implement
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| data | <code>string</code> | Data recieved |
+
+<a name="Player+startTurn"></a>
+
+### player.startTurn()
+Starts players turn. Will call any turn functions for the current player state.
+
+**Kind**: instance method of [<code>Player</code>](#Player)  
+**Todo**
+
+- [ ] implement
+
+<a name="Player+endTurn"></a>
+
+### player.endTurn()
+Ends players turn. Will call any end turn functions for the current player state.
+
+**Kind**: instance method of [<code>Player</code>](#Player)  
+**Todo**
+
+- [ ] implement
+
+<a name="Player+sendData"></a>
+
+### player.sendData(data)
+Sends data to the player
+
+**Kind**: instance method of [<code>Player</code>](#Player)  
+
+| Param | Type |
+| --- | --- |
+| data | <code>any</code> | 
+
+<a name="Player+setState"></a>
+
+### player.setState(state, stack)
+Sets the players player state.
+
+**Kind**: instance method of [<code>Player</code>](#Player)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| state | [<code>PlayerState</code>](#PlayerState) | Player State to set on the player. |
+| stack | <code>boolean</code> | Whether to add existing state to the stack. |
+
+<a name="Player+popState"></a>
+
+### player.popState()
+Pops the last state on the stack into the playerState
+
+**Kind**: instance method of [<code>Player</code>](#Player)  
+<a name="Player+export"></a>
+
+### player.export()
+Exports the player
+
+**Kind**: instance method of [<code>Player</code>](#Player)  
+<a name="Player+prepareForSend"></a>
+
+### player.prepareForSend()
+Returns an object of the player data that is ok to send to player
+
+**Kind**: instance method of [<code>Player</code>](#Player)  
+<a name="Player+prepareForBroadcast"></a>
+
+### player.prepareForBroadcast()
+Returns an object of the player data that is ok to send to everybody
+
+**Kind**: instance method of [<code>Player</code>](#Player)  
+<a name="MetaDataPropertyObject+addProperty"></a>
+
+### player.addProperty(propertyName, data)
+Adds a property and the correct metadata.
+
+**Kind**: instance method of [<code>Player</code>](#Player)  
+**Overrides**: [<code>addProperty</code>](#MetaDataPropertyObject+addProperty)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| propertyName | <code>string</code> | Name of the property to be set |
+| data | [<code>Data</code>](#Data) | Object containing data and metadata for the property. |
+
+<a name="MetaDataPropertyObject+removeProperty"></a>
+
+### player.removeProperty(propertyName)
+Removes a property and the metadata.
+
+**Kind**: instance method of [<code>Player</code>](#Player)  
+**Overrides**: [<code>removeProperty</code>](#MetaDataPropertyObject+removeProperty)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| propertyName | <code>string</code> | Name of property to be removed. |
+
+<a name="MetaDataPropertyObject+prepareObjectForTransfer"></a>
+
+### player.prepareObjectForTransfer(transferType)
+Prepares the object for transfer according to the metadata instructions.
+
+**Kind**: instance method of [<code>Player</code>](#Player)  
+**Overrides**: [<code>prepareObjectForTransfer</code>](#MetaDataPropertyObject+prepareObjectForTransfer)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| transferType | <code>string</code> | Prepare it for which transfer type. |
+
+<a name="MetaDataPropertyObject+preparePropertyForTransfer"></a>
+
+### player.preparePropertyForTransfer(transferType, property)
+Prepares a parameter for transfer according to the metadata instructions.
+
+**Kind**: instance method of [<code>Player</code>](#Player)  
+**Overrides**: [<code>preparePropertyForTransfer</code>](#MetaDataPropertyObject+preparePropertyForTransfer)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -238,6 +423,8 @@ Remove websocket client from this server
 <a name="TransferMetaData"></a>
 
 ## TransferMetaData : <code>object</code>
+Metadata about how to process the data for transfer.
+
 **Kind**: global typedef  
 **Properties**
 
@@ -249,6 +436,8 @@ Remove websocket client from this server
 <a name="Data"></a>
 
 ## Data : <code>object</code>
+Data that includes metadata
+
 **Kind**: global typedef  
 **Properties**
 

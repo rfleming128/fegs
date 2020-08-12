@@ -17,6 +17,10 @@ class PlayerState extends MetaDataPropertyObject{
         super(properties);
         this.addProperty("name", {data: name, broadcast: {include: true}, send: {include: true}, export: {include: true}});
     }
+
+    export(){
+        return this.prepareObjectForTransfer("export");
+    }
 }
 
 module.exports = PlayerState;
