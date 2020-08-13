@@ -31,9 +31,11 @@ module.exports.addData = () => {
 
 module.exports.broadcastMetadata = () => {
     return {
-        input: {
-            test: {data: 0, broadcast: {include: true}},
-            test2: {data: 4, broadcast: {include: false}}
+        createObject: () => {
+            return new MetaDataPropertyObject({
+                test: {data: 0, broadcast: {include: true}},
+                test2: {data: 4, broadcast: {include: false}}
+            })
         },
         output: {
             test: 0,
@@ -59,13 +61,43 @@ module.exports.broadcastMetadata = () => {
 
 module.exports.transformFunction = () => {
     return {
-        input: {
-            test: {data: 0, broadcast: {include: true, transform: data => {
-                return 1;
-            }}}
+        createObject: () => {
+            return new MetaDataPropertyObject({
+                test: {
+                    data: 0, 
+                    broadcast: {
+                        include: true, 
+                        transform: data => {
+                            return 1;
+                        }
+                    }
+                }
+            });
         }, 
         output: {
             test: 1
         }
+    }
+}
+
+module.exports.transformFunctionExtraData = () => {
+    return {
+        createObject: () => {
+            return new MetaDataPropertyObject({
+                test: {
+                    data: 1,
+                    broadcast: {
+                        include: true,
+                        transform: (data, extraData) => {
+                            return data - extraData;
+                        }
+                    }
+                }
+            })
+        },
+        output: {
+            test: 0
+        },
+        extraData: 1
     }
 }

@@ -1,6 +1,10 @@
+const PlayerState = require("../../../server/PlayerState")
+
 module.exports.simplePlayerState = () => {
     return {
-        input: "playing",
+        createObject: () => {
+            return new PlayerState("playing");
+        },
         output: {
             name: "playing", 
             propertyMetaData: {
@@ -16,23 +20,26 @@ module.exports.simplePlayerState = () => {
 
 module.exports.complicatedPlayerState = () => {
     return {
-        input: {
-            name: "playing",
-            data: {
-                test: {data: 0}
-            }
+        createObject: () => {
+            return new PlayerState("playing", {test: {data: 0, export: {include: true}}});
         },
         output: {
             name: "playing", 
             test: 0,
             propertyMetaData: {
-                test: {},
+                test: {
+                    export: {include: true}
+                },
                 name: {
                     broadcast: {include: true}, 
                     send: {include: true}, 
                     export: {include: true}
                 }
             }
+        },
+        export: {
+            name: "playing",
+            test: 0
         }
     }
 }

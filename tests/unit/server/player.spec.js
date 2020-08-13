@@ -15,46 +15,42 @@ let player;
 
 describe('Player Class', () => {
     describe('Constructor', () => {
-        it('Should create player object', () => {
+        it('Should generate player object', () => {
             player = playerFixture.simplePlayer().createObject();
-            expect(player).excludingEvery(["functions", "transform", "id"]).to.deep.equal(playerFixture.simplePlayer().output);
+            expect(player).excludingEvery(['id', 'functions', 'transform']).to.deep.equal(playerFixture.simplePlayer().output)
         })
     })
 
     describe('Export', () => {
         it('Should export correctly', () => {
-            player = playerFixture.playerExport().createObject();
-            output = player.export();
-            expect(output).to.deep.equal(playerFixture.playerExport().output);
+            player = playerFixture.simplePlayer().createObject();
+            let output = player.export();
+            expect(output).to.deep.equal(playerFixture.simplePlayer().export)
         })
     })
 
     describe('Set Socket', () => {
-        it('Should set the socket when constructed', () => {
-            player = playerFixture.socket().createObject();
-            expect(player).excludingEvery(["functions", "transform", "id", "on"]).to.deep.equal(playerFixture.socket().output);
-        })
-
-        it('Should set the socket when function called', () => {
-            player = playerFixture.simplePlayer().createObject();
-            player.setSocket({socketName: "test", on: function(){}});
-            expect(player).excludingEvery(["functions", "transform", "id", "on"]).to.deep.equal(playerFixture.socket().output);
-        })
     })
 
     describe('Send Data', () => {
-
     })
 
     describe('Set State', () => {
-
     })
 
     describe('Prepare for Send', () => {
-
+        it('Should prepare for send correctly', () => {
+            player = playerFixture.simplePlayer().createObject();
+            let output = player.prepareForSend();
+            expect(output).to.deep.equal(playerFixture.simplePlayer().send)
+        })
     })
 
     describe('Prepare for Broadcast', () => {
-
+        it('Should prepare for broadcast correctly', () => {
+            player = playerFixture.simplePlayer().createObject();
+            let output = player.prepareForBroadcast();
+            expect(output).to.deep.equal(playerFixture.simplePlayer().broadcast)
+        })
     })
 })

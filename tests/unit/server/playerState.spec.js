@@ -12,13 +12,21 @@ let playerState;
 describe('PlayerState Class', () => {
     describe('Constructor', () => {
         it('Should create object with name', () => {
-            playerState = new PlayerState(playerStateFixtures.simplePlayerState().input);
+            playerState = playerStateFixtures.simplePlayerState().createObject();
             expect(playerState).to.deep.equal(playerStateFixtures.simplePlayerState().output);
         });
 
         it('Should create object with metadata', () => {
-            playerState = new PlayerState(playerStateFixtures.complicatedPlayerState().input.name, playerStateFixtures.complicatedPlayerState().input.data);
+            playerState = playerStateFixtures.complicatedPlayerState().createObject();
             expect(playerState).to.deep.equal(playerStateFixtures.complicatedPlayerState().output);
+        })
+    })
+
+    describe('Export', () => {
+        it('Should export properly', () => {
+            playerState = playerStateFixtures.complicatedPlayerState().createObject();
+            let output = playerState.export();
+            expect(output).to.deep.equal(playerStateFixtures.complicatedPlayerState().export)
         })
     })
 });

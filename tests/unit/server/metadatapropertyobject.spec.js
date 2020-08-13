@@ -5,7 +5,6 @@ const sinon = require('sinon');
 
 const MetaDataPropertyObject = require('../../../server/MetaDataPropertyObject');
 const metadataFixtures = require('../../fixtures/metadatapropertyobject/fixtures');
-const { should } = require('chai');
 
 describe('MetaDataPropertyObject Class', () => {
     describe('Constructor', () => {
@@ -21,7 +20,7 @@ describe('MetaDataPropertyObject Class', () => {
             expect(metaDataPropertyObject).to.deep.equal(metadataFixtures.simpleMetadata().output);
         })
         it('Should set MetaData', () => {
-            metaDataPropertyObject = new MetaDataPropertyObject(metadataFixtures.broadcastMetadata().input);
+            metaDataPropertyObject = metadataFixtures.broadcastMetadata().createObject();
 
             expect(metaDataPropertyObject).to.be.an('object');
             expect(metaDataPropertyObject).to.deep.equal(metadataFixtures.broadcastMetadata().output);
@@ -36,22 +35,28 @@ describe('MetaDataPropertyObject Class', () => {
     });
     describe('RemoveProperty', () => {
         it('Should remove property and metadata', () => {
-            metaDataPropertyObject = new MetaDataPropertyObject(metadataFixtures.simpleMetadata().input);
+            metaDataPropertyObject = metadataFixtures.simpleMetadata().createObject();
             metaDataPropertyObject.removeProperty("test");
             expect(metaDataPropertyObject).to.deep.equal({propertyMetaData: {}})
         })
     })
     describe('Prepare for transfer', () => {
         it('Should be prepared for transfer correctly', () => {
-            metaDataPropertyObject = new MetaDataPropertyObject(metadataFixtures.broadcastMetadata().input);
+            metaDataPropertyObject = metadataFixtures.broadcastMetadata().createObject();
             let output = metaDataPropertyObject.prepareObjectForTransfer("broadcast");
             expect(output).to.deep.equal(metadataFixtures.broadcastMetadata().broadcast);
         })
 
         it('Should call function when preparing', () => {
-            metaDataPropertyObject = new MetaDataPropertyObject(metadataFixtures.transformFunction().input);
+            metaDataPropertyObject = metadataFixtures.transformFunction().createObject();
             let output = metaDataPropertyObject.prepareObjectForTransfer("broadcast");
             expect(output).to.deep.equal(metadataFixtures.transformFunction().output)
+        })
+
+        it('Should call function with extra data when provided', () => {
+            metaDataPropertyObject = metadataFixtures.transformFunctionExtraData().createObject();
+            let output = metaDataPropertyObject.prepareObjectForTransfer("broadcast", metadataFixtures.transformFunctionExtraData().extraData);
+            expect(output).to.deep.equal(metadataFixtures.transformFunctionExtraData().output)
         })
     })
 })

@@ -11,15 +11,14 @@ class Player extends MetaDataPropertyObject {
      * 
      * @param {Game} game 
      * @param {object} functions 
-     * @param {function} defaultState 
-     * @param {object.<Data>} properties 
+     * @param {PlayerState} defaultState 
      * @param {string} name 
      * @param {WebSocket} socket 
      */
-    constructor(game, functions, defaultState, properties, name, socket){
-        super(properties);
+    constructor(game, functions, state, name, socket){
+        super();
         this.addProperty("playerState", {
-            data: defaultState(), 
+            data: state,
             broadcast: {include: true, transform: state => state.export()}, 
             send: {include: true, transform: state => state.export()}, 
             export: {include: true, transform: state => state.export()}
@@ -57,7 +56,7 @@ class Player extends MetaDataPropertyObject {
     }
 
     /**
-     * Starts players turn. Will call any turn functions for the current player state.
+     * Starts players turn. Will call the start turn functions for the current player state.
      * @todo implement
      */
     startTurn(){
@@ -65,7 +64,7 @@ class Player extends MetaDataPropertyObject {
     }
 
     /**
-     * Ends players turn. Will call any end turn functions for the current player state. 
+     * Ends players turn. Will call the end turn functions for the current player state. 
      * @todo implement
      */
     endTurn(){

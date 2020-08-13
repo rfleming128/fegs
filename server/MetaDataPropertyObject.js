@@ -58,8 +58,9 @@ class MetaDataPropertyObject {
      * Prepares the object for transfer according to the metadata instructions.
      * 
      * @param {string} transferType Prepare it for which transfer type.
+     * @param {any} [extraData] Any extra data to be included in any transform.
      */
-    prepareObjectForTransfer(transferType){
+    prepareObjectForTransfer(transferType, extraData){
         let data = {};
 
         for(const property in this){
@@ -67,7 +68,7 @@ class MetaDataPropertyObject {
             if(metdataForPropety){
                 let metadataForTransfer = metdataForPropety[transferType];
                 if(metadataForTransfer){
-                    let propertyPrepared = this.preparePropertyForTransfer(transferType, property);
+                    let propertyPrepared = this.preparePropertyForTransfer(transferType, property, extraData);
                     if(propertyPrepared !== undefined){
                         data[property] = propertyPrepared;
                     }
@@ -83,13 +84,14 @@ class MetaDataPropertyObject {
      * 
      * @param {string} transferType Prepare it for which transfer type.
      * @param {string} property Property name
+     * @param {any} [extraData] Any extra data to be included in any transform.
      */
-    preparePropertyForTransfer(transferType, property){
+    preparePropertyForTransfer(transferType, property, extraData){
         let metdataForPropety = this.propertyMetaData[property];
         let metadataForTransfer = metdataForPropety[transferType];
         if(metadataForTransfer.include){
             if(metadataForTransfer.transform){
-                return metadataForTransfer.transform(this[property]);
+                return metadataForTransfer.transform(this[property], extraData);
             } else {
                 return this[property];
             }

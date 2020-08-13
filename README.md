@@ -1,6 +1,8 @@
 ## Classes
 
 <dl>
+<dt><a href="#Game">Game</a> ⇐ <code><a href="#MetaDataPropertyObject">MetaDataPropertyObject</a></code></dt>
+<dd></dd>
 <dt><a href="#MetaDataPropertyObject">MetaDataPropertyObject</a></dt>
 <dd><p>Extenible class for including metadata on how to handle the data on an object for transfer.</p>
 </dd>
@@ -25,6 +27,70 @@
 </dd>
 </dl>
 
+<a name="Game"></a>
+
+## Game ⇐ [<code>MetaDataPropertyObject</code>](#MetaDataPropertyObject)
+**Kind**: global class  
+**Extends**: [<code>MetaDataPropertyObject</code>](#MetaDataPropertyObject)  
+
+* [Game](#Game) ⇐ [<code>MetaDataPropertyObject</code>](#MetaDataPropertyObject)
+    * [.addProperty(propertyName, data)](#MetaDataPropertyObject+addProperty)
+    * [.removeProperty(propertyName)](#MetaDataPropertyObject+removeProperty)
+    * [.prepareObjectForTransfer(transferType, [extraData])](#MetaDataPropertyObject+prepareObjectForTransfer)
+    * [.preparePropertyForTransfer(transferType, property, [extraData])](#MetaDataPropertyObject+preparePropertyForTransfer)
+
+<a name="MetaDataPropertyObject+addProperty"></a>
+
+### game.addProperty(propertyName, data)
+Adds a property and the correct metadata.
+
+**Kind**: instance method of [<code>Game</code>](#Game)  
+**Overrides**: [<code>addProperty</code>](#MetaDataPropertyObject+addProperty)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| propertyName | <code>string</code> | Name of the property to be set |
+| data | [<code>Data</code>](#Data) | Object containing data and metadata for the property. |
+
+<a name="MetaDataPropertyObject+removeProperty"></a>
+
+### game.removeProperty(propertyName)
+Removes a property and the metadata.
+
+**Kind**: instance method of [<code>Game</code>](#Game)  
+**Overrides**: [<code>removeProperty</code>](#MetaDataPropertyObject+removeProperty)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| propertyName | <code>string</code> | Name of property to be removed. |
+
+<a name="MetaDataPropertyObject+prepareObjectForTransfer"></a>
+
+### game.prepareObjectForTransfer(transferType, [extraData])
+Prepares the object for transfer according to the metadata instructions.
+
+**Kind**: instance method of [<code>Game</code>](#Game)  
+**Overrides**: [<code>prepareObjectForTransfer</code>](#MetaDataPropertyObject+prepareObjectForTransfer)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| transferType | <code>string</code> | Prepare it for which transfer type. |
+| [extraData] | <code>any</code> | Any extra data to be included in any transform. |
+
+<a name="MetaDataPropertyObject+preparePropertyForTransfer"></a>
+
+### game.preparePropertyForTransfer(transferType, property, [extraData])
+Prepares a parameter for transfer according to the metadata instructions.
+
+**Kind**: instance method of [<code>Game</code>](#Game)  
+**Overrides**: [<code>preparePropertyForTransfer</code>](#MetaDataPropertyObject+preparePropertyForTransfer)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| transferType | <code>string</code> | Prepare it for which transfer type. |
+| property | <code>string</code> | Property name |
+| [extraData] | <code>any</code> | Any extra data to be included in any transform. |
+
 <a name="MetaDataPropertyObject"></a>
 
 ## MetaDataPropertyObject
@@ -42,8 +108,8 @@ Extenible class for including metadata on how to handle the data on an object fo
     * [new MetaDataPropertyObject(properties)](#new_MetaDataPropertyObject_new)
     * [.addProperty(propertyName, data)](#MetaDataPropertyObject+addProperty)
     * [.removeProperty(propertyName)](#MetaDataPropertyObject+removeProperty)
-    * [.prepareObjectForTransfer(transferType)](#MetaDataPropertyObject+prepareObjectForTransfer)
-    * [.preparePropertyForTransfer(transferType, property)](#MetaDataPropertyObject+preparePropertyForTransfer)
+    * [.prepareObjectForTransfer(transferType, [extraData])](#MetaDataPropertyObject+prepareObjectForTransfer)
+    * [.preparePropertyForTransfer(transferType, property, [extraData])](#MetaDataPropertyObject+preparePropertyForTransfer)
 
 <a name="new_MetaDataPropertyObject_new"></a>
 
@@ -80,7 +146,7 @@ Removes a property and the metadata.
 
 <a name="MetaDataPropertyObject+prepareObjectForTransfer"></a>
 
-### metaDataPropertyObject.prepareObjectForTransfer(transferType)
+### metaDataPropertyObject.prepareObjectForTransfer(transferType, [extraData])
 Prepares the object for transfer according to the metadata instructions.
 
 **Kind**: instance method of [<code>MetaDataPropertyObject</code>](#MetaDataPropertyObject)  
@@ -88,10 +154,11 @@ Prepares the object for transfer according to the metadata instructions.
 | Param | Type | Description |
 | --- | --- | --- |
 | transferType | <code>string</code> | Prepare it for which transfer type. |
+| [extraData] | <code>any</code> | Any extra data to be included in any transform. |
 
 <a name="MetaDataPropertyObject+preparePropertyForTransfer"></a>
 
-### metaDataPropertyObject.preparePropertyForTransfer(transferType, property)
+### metaDataPropertyObject.preparePropertyForTransfer(transferType, property, [extraData])
 Prepares a parameter for transfer according to the metadata instructions.
 
 **Kind**: instance method of [<code>MetaDataPropertyObject</code>](#MetaDataPropertyObject)  
@@ -100,6 +167,7 @@ Prepares a parameter for transfer according to the metadata instructions.
 | --- | --- | --- |
 | transferType | <code>string</code> | Prepare it for which transfer type. |
 | property | <code>string</code> | Property name |
+| [extraData] | <code>any</code> | Any extra data to be included in any transform. |
 
 <a name="Player"></a>
 
@@ -108,7 +176,7 @@ Prepares a parameter for transfer according to the metadata instructions.
 **Extends**: [<code>MetaDataPropertyObject</code>](#MetaDataPropertyObject)  
 
 * [Player](#Player) ⇐ [<code>MetaDataPropertyObject</code>](#MetaDataPropertyObject)
-    * [new Player(game, functions, defaultState, properties, name, socket)](#new_Player_new)
+    * [new Player(game, functions, defaultState, name, socket)](#new_Player_new)
     * [.setSocket(socket)](#Player+setSocket)
     * [.onSocketData(data)](#Player+onSocketData)
     * [.startTurn()](#Player+startTurn)
@@ -121,21 +189,20 @@ Prepares a parameter for transfer according to the metadata instructions.
     * [.prepareForBroadcast()](#Player+prepareForBroadcast)
     * [.addProperty(propertyName, data)](#MetaDataPropertyObject+addProperty)
     * [.removeProperty(propertyName)](#MetaDataPropertyObject+removeProperty)
-    * [.prepareObjectForTransfer(transferType)](#MetaDataPropertyObject+prepareObjectForTransfer)
-    * [.preparePropertyForTransfer(transferType, property)](#MetaDataPropertyObject+preparePropertyForTransfer)
+    * [.prepareObjectForTransfer(transferType, [extraData])](#MetaDataPropertyObject+prepareObjectForTransfer)
+    * [.preparePropertyForTransfer(transferType, property, [extraData])](#MetaDataPropertyObject+preparePropertyForTransfer)
 
 <a name="new_Player_new"></a>
 
-### new Player(game, functions, defaultState, properties, name, socket)
+### new Player(game, functions, defaultState, name, socket)
 Creates a player object
 
 
 | Param | Type |
 | --- | --- |
-| game | <code>Game</code> | 
+| game | [<code>Game</code>](#Game) | 
 | functions | <code>object</code> | 
-| defaultState | <code>function</code> | 
-| properties | [<code>object.&lt;Data&gt;</code>](#Data) | 
+| defaultState | [<code>PlayerState</code>](#PlayerState) | 
 | name | <code>string</code> | 
 | socket | <code>WebSocket</code> | 
 
@@ -168,7 +235,7 @@ Called when the socket recieves data
 <a name="Player+startTurn"></a>
 
 ### player.startTurn()
-Starts players turn. Will call any turn functions for the current player state.
+Starts players turn. Will call the start turn functions for the current player state.
 
 **Kind**: instance method of [<code>Player</code>](#Player)  
 **Todo**
@@ -178,7 +245,7 @@ Starts players turn. Will call any turn functions for the current player state.
 <a name="Player+endTurn"></a>
 
 ### player.endTurn()
-Ends players turn. Will call any end turn functions for the current player state.
+Ends players turn. Will call the end turn functions for the current player state.
 
 **Kind**: instance method of [<code>Player</code>](#Player)  
 **Todo**
@@ -259,7 +326,7 @@ Removes a property and the metadata.
 
 <a name="MetaDataPropertyObject+prepareObjectForTransfer"></a>
 
-### player.prepareObjectForTransfer(transferType)
+### player.prepareObjectForTransfer(transferType, [extraData])
 Prepares the object for transfer according to the metadata instructions.
 
 **Kind**: instance method of [<code>Player</code>](#Player)  
@@ -268,10 +335,11 @@ Prepares the object for transfer according to the metadata instructions.
 | Param | Type | Description |
 | --- | --- | --- |
 | transferType | <code>string</code> | Prepare it for which transfer type. |
+| [extraData] | <code>any</code> | Any extra data to be included in any transform. |
 
 <a name="MetaDataPropertyObject+preparePropertyForTransfer"></a>
 
-### player.preparePropertyForTransfer(transferType, property)
+### player.preparePropertyForTransfer(transferType, property, [extraData])
 Prepares a parameter for transfer according to the metadata instructions.
 
 **Kind**: instance method of [<code>Player</code>](#Player)  
@@ -281,6 +349,7 @@ Prepares a parameter for transfer according to the metadata instructions.
 | --- | --- | --- |
 | transferType | <code>string</code> | Prepare it for which transfer type. |
 | property | <code>string</code> | Property name |
+| [extraData] | <code>any</code> | Any extra data to be included in any transform. |
 
 <a name="PlayerState"></a>
 
@@ -300,8 +369,8 @@ Class to contain details about player state. Used to route player logic properly
     * [new PlayerState(name, [properties])](#new_PlayerState_new)
     * [.addProperty(propertyName, data)](#MetaDataPropertyObject+addProperty)
     * [.removeProperty(propertyName)](#MetaDataPropertyObject+removeProperty)
-    * [.prepareObjectForTransfer(transferType)](#MetaDataPropertyObject+prepareObjectForTransfer)
-    * [.preparePropertyForTransfer(transferType, property)](#MetaDataPropertyObject+preparePropertyForTransfer)
+    * [.prepareObjectForTransfer(transferType, [extraData])](#MetaDataPropertyObject+prepareObjectForTransfer)
+    * [.preparePropertyForTransfer(transferType, property, [extraData])](#MetaDataPropertyObject+preparePropertyForTransfer)
 
 <a name="new_PlayerState_new"></a>
 
@@ -341,7 +410,7 @@ Removes a property and the metadata.
 
 <a name="MetaDataPropertyObject+prepareObjectForTransfer"></a>
 
-### playerState.prepareObjectForTransfer(transferType)
+### playerState.prepareObjectForTransfer(transferType, [extraData])
 Prepares the object for transfer according to the metadata instructions.
 
 **Kind**: instance method of [<code>PlayerState</code>](#PlayerState)  
@@ -350,10 +419,11 @@ Prepares the object for transfer according to the metadata instructions.
 | Param | Type | Description |
 | --- | --- | --- |
 | transferType | <code>string</code> | Prepare it for which transfer type. |
+| [extraData] | <code>any</code> | Any extra data to be included in any transform. |
 
 <a name="MetaDataPropertyObject+preparePropertyForTransfer"></a>
 
-### playerState.preparePropertyForTransfer(transferType, property)
+### playerState.preparePropertyForTransfer(transferType, property, [extraData])
 Prepares a parameter for transfer according to the metadata instructions.
 
 **Kind**: instance method of [<code>PlayerState</code>](#PlayerState)  
@@ -363,6 +433,7 @@ Prepares a parameter for transfer according to the metadata instructions.
 | --- | --- | --- |
 | transferType | <code>string</code> | Prepare it for which transfer type. |
 | property | <code>string</code> | Property name |
+| [extraData] | <code>any</code> | Any extra data to be included in any transform. |
 
 <a name="Server"></a>
 
