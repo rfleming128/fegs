@@ -1,7 +1,9 @@
+const MetaDataPropertyObject = require("../../../server/MetaDataPropertyObject")
+
 module.exports.simpleMetadata = () => {
     return {
-        input: {
-            test: {data: 0}
+        createObject: () => {
+            return new MetaDataPropertyObject({test: {data: 0}});
         }, output: {
             test: 0,
             propertyMetaData: {test: {}}

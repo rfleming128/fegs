@@ -29,7 +29,7 @@ class Player extends MetaDataPropertyObject {
         this.game = game;
         this.functions = functions;
         if(socket){
-            this.socket = socket;
+            this.setSocket(socket);
         }
         this.id = uuidv4();
     }

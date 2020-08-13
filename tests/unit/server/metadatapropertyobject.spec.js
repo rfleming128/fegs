@@ -10,12 +10,12 @@ const { should } = require('chai');
 describe('MetaDataPropertyObject Class', () => {
     describe('Constructor', () => {
         it('Should create object', () => {
-            metaDataPropertyObject = new MetaDataPropertyObject();
+            metaDataPropertyObject = metadataFixtures.simpleMetadata().createObject()
     
             expect(metaDataPropertyObject).to.be.an('object');
         });
         it('Should set properties', () => {
-            metaDataPropertyObject = new MetaDataPropertyObject(metadataFixtures.simpleMetadata().input);
+            metaDataPropertyObject = metadataFixtures.simpleMetadata().createObject()
 
             expect(metaDataPropertyObject).to.be.an('object');
             expect(metaDataPropertyObject).to.deep.equal(metadataFixtures.simpleMetadata().output);
